@@ -1,10 +1,12 @@
 import csv
+import time
+import tracemalloc
 
 class BruteForce:
     def __init__(self, pathfile):
         self.pathfile = pathfile
 
-    def put_in_dict(self):
+    def put_in_lst(self):
         '''
         - extract value from csv and push it in dict
         - take 'filePathToCSV'
@@ -44,11 +46,17 @@ class BruteForce:
 
         return print("Profits : ", infos[0]), print("Total cost : ", ttcost), print("Actions sélectionnées : ", infos[1])
 
-
+start_time = time.time()
+tracemalloc.start()
 path = './data/1-brut_force/data_brut_force.csv'
 
 mes_valeur = BruteForce(path)
 
-mes_valeur.brut_force(500, mes_valeur.put_in_dict())
+mes_valeur.brut_force(500, mes_valeur.put_in_lst())
 
+print("--- %s seconds ---" % (time.time() - start_time))
 
+print(tracemalloc.get_traced_memory())
+ 
+# stopping the library
+tracemalloc.stop()
