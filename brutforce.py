@@ -24,6 +24,7 @@ class BruteForce:
         return values_container
 
     def brut_force_raw(self, wallet, elements, action_selection = []):
+        
         if elements:
             val1, list_val1 = self.brut_force_raw(wallet, elements[1:], action_selection)
             val = elements[0]
@@ -47,7 +48,7 @@ class BruteForce:
         return print("Profits : ", infos[0]), print("Total cost : ", ttcost), print("Actions sélectionnées : ", infos[1])
 
 start_time = time.time()
-tracemalloc.start()
+#tracemalloc.start()
 path = './data/1-brut_force/data_brut_force.csv'
 
 mes_valeur = BruteForce(path)
@@ -56,7 +57,7 @@ mes_valeur.brut_force(500, mes_valeur.put_in_lst())
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
-print(tracemalloc.get_traced_memory())
+#print(tracemalloc.get_traced_memory())
  
 # stopping the library
-tracemalloc.stop()
+# tracemalloc.stop()
