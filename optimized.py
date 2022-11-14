@@ -1,6 +1,6 @@
 import csv
 import time
-import tracemalloc
+import sys
 
 class Optimized:
     def __init__(self, pathfile):
@@ -35,7 +35,7 @@ class Optimized:
         # convert float value to int
         wallet = wallet*100
         
-        # init table
+        # make array 
         matrice = [[0 for x in range(wallet + 1)] for x in range(len(elements) + 1)]
 
         # browse elements
@@ -81,21 +81,22 @@ class Optimized:
         # Format total cost value
         ttcost = ttcost/100
         
-        return print("Profit : ", (matrice[-1][-1])/100), print("Total cost : ", ttcost), print("Actions selection : ", action_format)
+        #return print("Profit : ", (matrice[-1][-1])/100), print("Total cost : ", ttcost), print("Actions selection : ", action_format)
+        return [ttcost, (matrice[-1][-1])/100, action_format, wallet/100]
 
 start_time = time.time()
 
-tracemalloc.start()
-
-path = './data/2-Optimise/dataset1_Python+P7.csv'
-
+#path = './data/2-Optimise/dataset2_Python+P7.csv'
+path = sys.argv[1]
 mes_valeur = Optimized(path)
+retour_valeur = mes_valeur.optimized(500, mes_valeur.put_in_lst()) 
 
-mes_valeur.optimized(500, mes_valeur.put_in_lst()) 
-
-print("--- %s seconds ---" % (time.time() - start_time))
-
-print(tracemalloc.get_traced_memory())
- 
-# stopping the library
-tracemalloc.stop()
+# retours console
+print("-------------------------------------------------------------")
+print("--|")
+print("--| Coût : ", retour_valeur[0], " sur un porte feuille de", retour_valeur[3])
+print("--| Bénéfices : ", retour_valeur[1])
+print("--| Actions sélectionnées : ", retour_valeur[2])
+print("--|")
+print("--| Temps : %s seconds" % (time.time() - start_time))
+print("-------------------------------------------------------------")
