@@ -85,11 +85,8 @@ class Optimized:
         # Format total cost value
         ttcost = ttcost/100
 
-        # return print("Profit : ", (matrice[-1][-1])/100),
-        # print("Total cost : ", ttcost),
-        # print("Actions selection : ", action_format)
         return [ttcost, (matrice[-1][-1])/100, action_format, wallet/100]
-
+    
 
 start_time = time.time()
 
