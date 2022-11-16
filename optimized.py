@@ -60,6 +60,8 @@ class Optimized:
         n = len(elements)
         action_selection = []
 
+        print(elements)
+
         # while there is money in wallet and elements
         while w >= 0 and n >= 0:
 

@@ -37,13 +37,13 @@ class BruteForce:
             rest2 = self.brut_force(wallet, elements.copy(), action_selection)
 
             # avoid going to the comparison if at least one none
-            if rest2 is None and rest1 is not None:
+            if (rest2 is None) and (rest1 is not None):
                 return rest1
 
-            if rest1 is None and rest2 is not None:
+            if (rest1 is None) and (rest2 is not None):
                 return rest2
 
-            if rest1 is None and rest2 is not None:
+            if (rest1 is None) and (rest2 is None):
                 return None
 
             # keep the best solution
@@ -69,7 +69,7 @@ start_time = time.time()
 # path = 'data\1-Brut_force\data_brut_force_test.csv'
 path = sys.argv[1]
 mes_valeur = BruteForce(path)
-print(mes_valeur.put_in_lst())
+
 retour_valeur = mes_valeur.brut_force(500, mes_valeur.put_in_lst())
 
 # retours console
